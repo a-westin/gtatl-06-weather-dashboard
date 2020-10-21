@@ -20,7 +20,16 @@ $("#search-bar").on("click", function () {
   }).then(function (response) {
     // Converting the temp from the api call to fahrenheit
     var temperature = (response.main.temp - 273.15) * 1.8 + 32;
-    console.log(Math.floor(temperature));
+    // console.log(Math.floor(temperature));
     temperature = Math.floor(temperature);
+
+    currentWeather(response);
+    fivedayForecast(response);
+    searchedCities();
   });
 });
+
+function searchedCities() {
+  var cityList = $("<li>").addClass("list-group-item").text(city);
+  $(".list").append(cityList);
+}
