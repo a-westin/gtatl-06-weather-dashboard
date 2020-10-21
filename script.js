@@ -18,11 +18,6 @@ $("#search-bar").on("click", function () {
     url: "api.openweathermap.org/data/2.5/weather?q" + city + api,
     method: "GET",
   }).then(function (response) {
-    // Converting the temp from the api call to fahrenheit
-    var temperature = (response.main.temp - 273.15) * 1.8 + 32;
-    // console.log(Math.floor(temperature));
-    temperature = Math.floor(temperature);
-
     currentWeather(response);
     fivedayForecast(response);
     searchedCities();
@@ -32,4 +27,12 @@ $("#search-bar").on("click", function () {
 function searchedCities() {
   var cityList = $("<li>").addClass("list-group-item").text(city);
   $(".list").append(cityList);
+}
+
+function currentWeather(response) {
+  // Converting the temp from the api call to fahrenheit
+  var temperature = (response.main.temp - 273.15) * 1.8 + 32;
+  temperature = Math.floor(temperature);
+
+  $("#current-city").empty();
 }
