@@ -35,4 +35,30 @@ function currentWeather(response) {
   temperature = Math.floor(temperature);
 
   $("#current-city").empty();
+
+  // Manipulating the DOM
+  var card = $("<div>").addClass("card");
+  var cardBody = $("<div>").addClass("card-body");
+  var cityName = $("<h3>").addClass("card-title").text(response.name);
+  var currentDate = $("<h3>")
+    .addClass("cart-title")
+    .text(date.toLocaleDateString("en-US"));
+  var temp = $("<p>")
+    .addClass("card-text current-temp")
+    .text("Temperature: " + temperature + " °F");
+  var wind = $("<p>")
+    .addClass("card-text wind-speed")
+    .text("Wind Speed: " + " MPH");
+  var humidity = $("<p>")
+    .addClass("card-text humidity")
+    .text("Humidity: " + response.main.humidity + "%");
+  var icon = $("<img>").attr(
+    "src",
+    "https://openweathermap.org/img/w" + response.weather[0].icon + ".png"
+  );
+
+  city.append(currentDate, icon);
+  cardBody.append(cityName, temp, wind, humidity);
+  card.append(cardBody);
+  $("#current-city").append(card);
 }
