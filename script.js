@@ -24,6 +24,35 @@ var getHistory = function () {
   }
 };
 
+function cityData(searchBar) {
+  var isError = false;
+  cardBody.empty();
+  $("forecast").empty();
+  if (!searchBar) {
+    return;
+  }
+  // Storing the openweather query as a variable
+  var openweatherQuery =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    searchBar +
+    "&units=imperial&appid=f5e57f73950c9288e279fbd41a016f88";
+  fetch(openweatherQuery)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (response) {
+      if (response.cod !== 200) {
+        alert("City not found. Please try another search.");
+        $("searchBar").val("");
+        isError = true;
+        return;
+      }
+      // Defining DOM variables
+      var date = moment().format(" MM/DD/YYY");
+      var weatherIcon = response.weather[0].icon;
+    });
+}
+
 // // Storing the value of the search term as a variable
 // var city = $("#search-bar").val();
 
