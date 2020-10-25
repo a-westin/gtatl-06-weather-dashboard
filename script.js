@@ -62,6 +62,25 @@ function cityData(searchBar) {
       cardBody.append($("<p>").html("Humidity: " + humidity));
       var windSpeed = response.wind.speed;
       cardBody.append($("<p>").html("Wind speed: " + windSpeed + " MPH"));
+
+      // Retrieving UV index from openweather
+      var uvIndex =
+        "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+        response.coord.lat +
+        "&lon=" +
+        response.coord.lon +
+        "&exclude-minutely,hourly&units=imperial&appid=f5e57f73950c9288e279fbd41a016f88";
+      return fetch(uvIndex)
+        .then(function (fullResponse) {
+          return fullResponse.json();
+        })
+        .then(function (fullResponse) {
+          cardBody.append(
+            $("<p>").html(
+              "UV Index: <span>" + fullResponse.current.uvi + "</span>"
+            )
+          );
+        });
     });
 }
 
