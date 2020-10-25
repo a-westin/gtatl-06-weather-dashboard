@@ -80,6 +80,17 @@ function cityData(searchBar) {
               "UV Index: <span>" + fullResponse.current.uvi + "</span>"
             )
           );
+          // UV conditions
+          if (fullResponse.current.uvi <= 2) {
+            $("span").attr("class", "btn btn-success");
+          } else if (
+            fullResponse.current.uvi > 2 &&
+            fullResponse.current.uvi <= 7
+          ) {
+            $("span").attr("class", "btn btn-warning");
+          } else {
+            $("span").attr("class", "btn btn-danger");
+          }
         });
     });
 }
