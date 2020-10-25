@@ -50,6 +50,18 @@ function cityData(searchBar) {
       // Defining DOM variables
       var date = moment().format(" MM/DD/YYY");
       var weatherIcon = response.weather[0].icon;
+      var iconUrl = "http://openweathermap.org/img/w" + weatherIcon + ".png";
+      var city = $("<h3>").html(searchBar + date);
+      cardBody.prepend(city);
+      cardBody.append($("<img>").attr("src", iconUrl));
+      var temperature = Math.ceil(response.main.temperature);
+      cardBody.append($("<p>").html("Temperature: " + temperature + " &#8457"));
+      var feelsLike = Math.ceil(response.main.feels_like);
+      cardBody.append($("<p>").html("Feels like: " + feelsLike + " &#8457"));
+      var humidity = response.main.humidity + "&#37;";
+      cardBody.append($("<p>").html("Humidity: " + humidity));
+      var windSpeed = response.wind.speed;
+      cardBody.append($("<p>").html("Wind speed: " + windSpeed + " MPH"));
     });
 }
 
