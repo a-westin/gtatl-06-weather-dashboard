@@ -126,6 +126,22 @@ $("search-button").on("click", function () {
   $("#searchBar").val("");
 });
 
+// Saving to local storage
+var saveCity = function (city) {
+  var cityArray = searchedCities.includes(city);
+  if (!cityArray && city !== "") {
+    searchedCities.push(city);
+    localStorage.setItem("searchedCities", JSON.stringify(searchedCities));
+    var searchedCityButton = $("<a>").attr({
+      class: "list-group-item-action list-group-item",
+      href: "#",
+      "button-number": searchedCities.length,
+    });
+    searchedCityButton.text(city);
+    $(".list-group").append(searchedCityButton);
+  }
+};
+
 // // Storing the value of the search term as a variable
 // var city = $("#search-bar").val();
 
