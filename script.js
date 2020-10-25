@@ -91,9 +91,40 @@ function cityData(searchBar) {
           } else {
             $("span").attr("class", "btn btn-danger");
           }
+
+          // API call to get five day forecast
+          for (var i = 1; i < 6; i++) {
+            var newCard = $("<div>").attr(
+              "class",
+              "col fivedayForecast bg-primary text-white rounded-lg p-2"
+            );
+            $("#forecast").append(newCard);
+            var newDate = new Date(
+              fullResponse.daily[i].dt * 1000
+            ).toLocaleDateString("en-US");
+
+            // Displaying the dates
+            newCard.append($("<h4>").html(newDate));
+            var icon = fullResponse.daily[i].weather[0].icon;
+            var iconUrl = "http://openweathermap.org/img/w/" + icon + ".png";
+            newCard.append($("<img>").attr("src", iconURL));
+            var temperature = Math.ceil(
+              fullResponse.daily[i].temperature["day"]
+            );
+            newCard.append($("<p>").html("Temp: " + temp + " &#8457"));
+            var humidity = fullResponse.daily[i].humidity;
+            newCard.append($("<p>").html("Humidity: " + humidity));
+          }
         });
     });
 }
+
+// Event listener for search button
+$("search-button").on("click", function () {
+  var city = $("#searchBar").val();
+  cityData(searchBar);
+  $("#searchBar").val("");
+});
 
 // // Storing the value of the search term as a variable
 // var city = $("#search-bar").val();
