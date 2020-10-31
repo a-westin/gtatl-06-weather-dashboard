@@ -106,11 +106,9 @@ function cityData(searchBar) {
             // Displaying the dates
             newCard.append($("<h4>").html(newDate));
             var icon = fullResponse.daily[i].weather[0].icon;
-            var iconUrl = "http://openweathermap.org/img/w/" + icon + ".png";
-            newCard.append($("<img>").attr("src", iconURL));
-            var temperature = Math.ceil(
-              fullResponse.daily[i].temperature["day"]
-            );
+            var iconLink = "http://openweathermap.org/img/w/" + icon + ".png";
+            newCard.append($("<img>").attr("src", iconLink));
+            var temp = Math.ceil(fullResponse.daily[i].temp["day"]);
             newCard.append($("<p>").html("Temp: " + temp + " &#8457"));
             var humidity = fullResponse.daily[i].humidity;
             newCard.append($("<p>").html("Humidity: " + humidity));
@@ -120,10 +118,11 @@ function cityData(searchBar) {
 }
 
 // Event listener for search button
-$("search-button").on("click", function () {
+$("#search-button").on("click", function () {
   var city = $("#searchBar").val();
   cityData(searchBar);
   $("#searchBar").val("");
+  console.log("#search-button");
 });
 
 // Saving to local storage
@@ -141,6 +140,14 @@ var saveCity = function (city) {
     $(".list-group").append(searchedCityButton);
   }
 };
+
+$(".list-group").on("click", function (e) {
+  var searchedCity = e.target.innerHTML;
+  $("#searchBar").val(searchedCity);
+  cityData(searchedCity);
+});
+
+getHistory();
 
 // // Storing the value of the search term as a variable
 // var city = $("#search-bar").val();
