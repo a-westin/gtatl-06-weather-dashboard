@@ -54,7 +54,7 @@ function cityData(searchBar) {
       var city = $("<h3>").html(searchBar + date);
       cardBody.prepend(city);
       cardBody.append($("<img>").attr("src", iconUrl));
-      var temperature = Math.ceil(response.main.temperature);
+      var temperature = Math.ceil(response.main.temp);
       cardBody.append($("<p>").html("Temperature: " + temperature + " &#8457"));
       var feelsLike = Math.ceil(response.main.feels_like);
       cardBody.append($("<p>").html("Feels like: " + feelsLike + " &#8457"));
