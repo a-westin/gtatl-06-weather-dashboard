@@ -120,9 +120,9 @@ function cityData(searchBar) {
 // Event listener for search button
 $("#search-button").on("click", function () {
   var city = $("#searchBar").val();
-  cityData(searchBar);
+  cityData(city);
   $("#searchBar").val("");
-  console.log("#search-button");
+  // console.log("#search-button");
 });
 
 // Saving to local storage
