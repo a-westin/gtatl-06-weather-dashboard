@@ -48,7 +48,7 @@ function cityData(searchBar) {
         return;
       }
       // Defining DOM variables
-      var date = moment().format(" MM/DD/YYY");
+      var date = moment().format(" MM/DD/YYYY");
       var weatherIcon = response.weather[0].icon;
       var iconUrl = "http://openweathermap.org/img/w" + weatherIcon + ".png";
       var city = $("<h3>").html(searchBar + date);
@@ -105,8 +105,8 @@ function cityData(searchBar) {
 
             // Displaying the dates
             newCard.append($("<h4>").html(newDate));
-            var icon = fullResponse.daily[i].weather[0].icon;
-            var iconLink = "http://openweathermap.org/img/w/" + icon + ".png";
+            var iconCode = fullResponse.daily[i].weather[0].icon;
+            var iconLink = "http://openweathermap.org/img/w/" + iconCode + ".png";
             newCard.append($("<img>").attr("src", iconLink));
             var temp = Math.ceil(fullResponse.daily[i].temp["day"]);
             newCard.append($("<p>").html("Temp: " + temp + " &#8457"));
