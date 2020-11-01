@@ -24,17 +24,17 @@ var getHistory = function () {
   }
 };
 
-function cityData(searchBar) {
+function cityData(city) {
   var isError = false;
   cardBody.empty();
   $("forecast").empty();
-  if (!searchBar) {
+  if (!city) {
     return;
   }
   // Storing the openweather query as a variable
   var openweatherQuery =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
-    searchBar +
+    city +
     "&units=imperial&appid=f5e57f73950c9288e279fbd41a016f88";
   fetch(openweatherQuery)
     .then(function (response) {
@@ -43,18 +43,19 @@ function cityData(searchBar) {
     .then(function (response) {
       if (response.cod !== 200) {
         alert("City not found. Please try another search.");
-        $("searchBar").val("");
+        $("#searchBar").val("");
         isError = true;
         return;
       }if(!isError){
         saveCity(city);
       }
+      
       // Defining DOM variables
       var date = moment().format(" MM/DD/YYYY");
       var weatherIcon = response.weather[0].icon;
       var iconUrl = "http://openweathermap.org/img/w" + weatherIcon + ".png";
-      var city = $("<h3>").html(searchBar + date);
-      cardBody.prepend(city);
+      var cityName = $("<h3>").html(city + date);
+      cardBody.prepend(cityName);
       cardBody.append($("<img>").attr("src", iconUrl));
       var temperature = Math.ceil(response.main.temp);
       cardBody.append($("<p>").html("Temperature: " + temperature + " &#8457"));
@@ -124,7 +125,6 @@ $("#search-button").on("click", function () {
   var city = $("#searchBar").val();
   cityData(city);
   $("#searchBar").val("");
-  // console.log("#search-button");
 });
 
 // Saving to local storage
@@ -136,8 +136,9 @@ var saveCity = function (city) {
     var searchedCityButton = $("<a>").attr({
       class: "list-group-item-action list-group-item",
       href: "#",
-      "data-btn-num": searchedCities.length,
-    });
+      "data-btn-num": searchedCities.length
+      }
+    );
     searchedCityButton.text(city);
     $(".list-group").append(searchedCityButton);
   }
