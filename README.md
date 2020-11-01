@@ -2,7 +2,7 @@
 
  ## Description  
 
-  A browser-based application that utilizes jQuery, moment.js, and the OpenWeather API in order to allow a user to search for the weather conditions of a particular city. Visit the deployed applicatin [here.](https://a-westin.github.io/gtatl-06-weather-dashboard/)
+  A browser-based application that utilizes jQuery, moment.js, and the OpenWeather API in order to allow a user to search for the weather conditions of a particular city. Visit the deployed application [here.](https://a-westin.github.io/gtatl-06-weather-dashboard/)
   
   ![Screen Shot 2020-11-01 at 5 46 11 PM](https://user-images.githubusercontent.com/69770137/97818422-65840d80-1c70-11eb-8008-dcaa839abfd3.png)  
 
