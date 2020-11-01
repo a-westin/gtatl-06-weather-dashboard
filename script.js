@@ -16,7 +16,7 @@ var getHistory = function () {
       searchedCityButton = $("<a>").attr({
         class: "list-group-item-action list-group-item",
         href: "#",
-        "button-number": i,
+        "data-btn-num": i,
       });
       searchedCityButton.text(searchedCities[i]);
       $(".list-group").append(searchedCityButton);
@@ -134,7 +134,7 @@ var saveCity = function (city) {
     var searchedCityButton = $("<a>").attr({
       class: "list-group-item-action list-group-item",
       href: "#",
-      "button-number": searchedCities.length,
+      "data-btn-num": searchedCities.length,
     });
     searchedCityButton.text(city);
     $(".list-group").append(searchedCityButton);
