@@ -46,6 +46,8 @@ function cityData(searchBar) {
         $("searchBar").val("");
         isError = true;
         return;
+      }if(!isError){
+        saveCity(city);
       }
       // Defining DOM variables
       var date = moment().format(" MM/DD/YYYY");
